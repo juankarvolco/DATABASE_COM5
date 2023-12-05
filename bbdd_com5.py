@@ -1,8 +1,8 @@
 self.conn = mysql.connector.connect(
-host=host,
-user=user,
-password=password,
-database=database
+    host=host,
+    user=user,
+    password=password,
+    database=database
 )
 
 # Constructor: def __init__(self, host, user, password, database):
