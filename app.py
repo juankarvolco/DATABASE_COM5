@@ -94,11 +94,11 @@ class Catalogo:
         self.conn.commit()
         return self.cursor.rowcount > 0
 
-    def modificar_juego(self, codigo, nuevo_nombre, nueva_descripcion, nueva_urlImagen, nuevo_participantesMin, nuevo_participantesMax, nuevo_urlVideo):
-        sql = "UPDATE juegos SET nombre = %s, descripcion = %s, urlImagen = %s,  = %s, participantesMin = %s, participantesMax = %s, urlVideo = %s" + \
-            f"WHERE codigo = {codigo}"
-        valores = (nuevo_nombre, nueva_descripcion, nueva_urlImagen,
-                   nuevo_participantesMin, nuevo_participantesMax, nuevo_urlVideo)
+    def modificar_juego(self, codigo, nuevo_nombre, nueva_descripcion, nuevo_participantesMin, nuevo_participantesMax, nueva_urlImagen, nueva_urlVideo):
+        sql = "UPDATE juegos SET nombre = %s, descripcion = %s, participantes_min = %s, participantes_max = %s, url_imagen = %s, url_video = %s WHERE codigo = " + \
+            str(codigo)
+        valores = (nuevo_nombre, nueva_descripcion,
+                   nuevo_participantesMin, nuevo_participantesMax, nueva_urlImagen, nueva_urlVideo)
         self.cursor.execute(sql, valores)
         self.conn. commit()
         return self.cursor.rowcount > 0
@@ -127,8 +127,9 @@ def listar_juegos():
 
 @app.route("/juegos/<int:codigo>", methods=["GET"])
 def mostrar_juego(codigo):
-    catalogo.mostrar_juego(codigo)
+
     juego = catalogo.consultar_juego(codigo)
+    # catalogo.mostrar_juego(juego)
     if juego:
         return jsonify(juego)
     else:
@@ -156,7 +157,7 @@ def agregar_juego():
 def eliminar_juego(codigo):
     juego = catalogo.consultar_juego(codigo)
     if juego:
-        if catalogo.eliminar_juego(id):
+        if catalogo.eliminar_juego(codigo):
             return jsonify({"mensaje": "Juego eliminado"}), 200
         else:
             return jsonify({"mensaje": "Error al eliminar el juego"}), 500

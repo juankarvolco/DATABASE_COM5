@@ -7,12 +7,13 @@ fetch(URL + 'juegos')
         } 
     }) 
     .then(function (data) { 
+        console.log(data)
         let tablaJuegos = document.getElementById('tablaJuegos'); 
         // Iteramos sobre los juegos y agregamos filas a la tabla 
         for (let juego of data) { 
             let fila = document.createElement('tr'); 
-            fila.innerHTML = '<td>' + juego.id + '</td>' + '<td>' + juego.nombre + '</td>' + '<td>' + juego.descripcion + '</td>' + '<td>' + juego.urlImagen + '</td>' + '<td>' + juego.participantesMin + '</td>' + '<td>' + juego.participantesMax + '</td>' + '<td>' + juego.urlVideo + '</td>'; 
-            tablaProductos.appendChild(fila); 
+            fila.innerHTML = '<td>' + juego.codigo + '</td>' + '<td>' + juego.nombre + '</td>' + '<td>' + juego.descripcion + '</td>'  + '<td>' + juego.participantes_min + '</td>' + '<td>' + juego.participantes_max + '</td>' + '<td><img src="' + juego.url_imagen + '" width=200 /></td>'+ '<td>' + juego.url_video + '</td>'; 
+            tablaJuegos.appendChild(fila); 
         } 
     }) 
     .catch(function (error) { 
