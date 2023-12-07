@@ -14,25 +14,26 @@
     <table>
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Código</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>url de la imagen</th>
                 <th>Mínimo de participantes</th>
                 <th>Máximo de participantes</th>
-                <th>url del video</th>
+                <th>URL imagen</th>
+                <th>URL video</th>
+                <th>Acción</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="juego in juegos">
-                <td>{{ juego.id }}</td>
+                <td>{{ juego.codigo }}</td>
                 <td>{{ juego.nombre }}</td>
                 <td>{{ juego.descripcion }}</td>
-                <td>{{ juego.urlImagen }}</td>
-                <td>{{ juego.participantesMin }}</td>
-                <td>{{ juego.participantesMax }}</td>
-                <td>{{ juego.urlVideo }}</td>
-                <td><button @click="eliminarProducto(producto.codigo)">Eliminar</button></td>
+                <td>{{ juego.participantes_min }}</td>
+                <td>{{ juego.participantes_max }}</td>
+                <td>{{ juego.url_imagen }}</td>
+                <td>{{ juego.url_video }}</td>
+                <td><button @click="eliminarJuego(juego.codigo)">Eliminar</button></td>
             </tr>
         </tbody>
     </table>

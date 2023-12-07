@@ -2,28 +2,29 @@ URL = "http://127.0.0.1:5000/"
 
 const app = Vue.createApp({ 
     data() { return { 
-        id: '', 
+        codigo: '', 
         nombre: '', 
         descripcion: '', 
-        urlImagen: '', 
         participantesMin: '', 
         participantesMax: '', 
+        urlImagen: '', 
         urlVideo: null,
         imagenUrlTemp: null, 
-        mostrarDatosJuegos: false, 
+        mostrarDatosJuego: false, 
     }; 
 },
  methods: { 
     obtenerJuego() { 
-        fetch(URL + 'juegos/' + this.id) 
+        fetch(URL + 'juegos/' + this.codigo) 
         .then(response => response.json()) 
-        .then(data => { 
+        .then(data => {
+            // console.log(data) 
             this.nombre = data.nombre; 
             this.descripcion = data.descripcion; 
-            this.urlImagen = data.urlImagen; 
-            this.participantesMin = data.participantesMin; 
-            this.participantesMax = data.participantesMax;
-            this.urlVideo = data.urlVideo;
+            this.participantesMin = data.participantes_min; 
+            this.participantesMax = data.participantes_max;
+            this.urlImagen = data.url_imagen; 
+            this.urlVideo = data.url_video;
             this.mostrarDatosJuego = true; 
         }) 
         .catch(error => console.error('Error:', error)); 
@@ -35,24 +36,27 @@ const app = Vue.createApp({
     },
         guardarCambios() { 
         const formData = new FormData(); 
-        formData.append('id', this.id); 
+
+        formData.append('codigo', this.codigo); 
         formData.append('nombre', this.nombre); 
         formData.append('descripcion', this.descripcion);
-        formData.append('urlImagen', this.urlImagen); 
         formData.append('participantesMin', this.participantesMin); 
         formData.append('participantesMax', this.participantesMax);
+        formData.append('urlImagen', this.urlImagen); 
         formData.append('urlVideo', this.urlVideo);
+
         if (this.imagenSeleccionada) { 
             formData.append('imagen', this.imagenSeleccionada, this.imagenSeleccionada.name); 
         } 
         
-        fetch(URL + 'productos/' + this.id, { 
+        fetch(URL + 'juegos/' + this.codigo, { 
             method: 'PUT', 
             body: formData, 
         }) 
             .then(response => response.json()) 
             .then(data => { 
                 alert('Juego actualizado correctamente'); 
+                console.log(data)
                 this.limpiarFormulario(); 
             }) 
             .catch(error => { 
@@ -61,7 +65,7 @@ const app = Vue.createApp({
             }); 
         }, 
         limpiarFormulario() { 
-            this.id = ''; 
+            this.codigo = ''; 
             this.nombre = ''; 
             this.descripcion = ''; 
             this.urlImagen = ''; 

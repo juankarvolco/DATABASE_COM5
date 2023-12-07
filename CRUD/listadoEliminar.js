@@ -24,11 +24,12 @@ const app = Vue.createApp({
         }, 
         eliminarJuego(id) { 
             if (confirm('¿Estás seguro de que quieres eliminar este juego?')) { 
-                fetch(URL + `productos/${id}`, { method: 'DELETE' }) 
+                fetch(URL + `juegos/${id}`, { method: 'DELETE' }) 
                 .then(response => { 
                     if (response.ok) { 
                         this.juegos = this.juegos.filter(juego => juego.id !== id); 
                         alert('Juego eliminado correctamente.'); 
+                        this.obtenerJuegos();
                     } 
                 }) 
                 .catch(error => { 
