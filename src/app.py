@@ -101,7 +101,7 @@ class Catalogo:
 # Cuerpo del programa
 # ----------------------------------------------------------------
 
-catalogo = Catalogo(host='localhost', user='root', password='1959marcos',
+catalogo = Catalogo(host='localhost', user='root', password='',
                     database='juegos_db')
 
 # Carpeta para guardar las imagenes

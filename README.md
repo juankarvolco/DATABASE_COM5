@@ -8,4 +8,5 @@ Cambié por error el apellido de Miguel Adrián Sosa y le puse Silva-No se como 
 3. Instalar con pip install flask-cors.
 4. Instalar con pip install mysql-connector-python.
 5. Si es necesario, pip install Werkzeug.
-6. Ejecutar con python src/app.py
+6. En app.py, cambiar los datos correspondientes a la instancia de la conexión a la base de datos.
+7. Ejecutar con python src/app.py
