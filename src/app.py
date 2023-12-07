@@ -1,23 +1,15 @@
-# --------------------------------------------------------------------
-# Instalar con pip install Flask
 from click import INT
 from flask import Flask, request, jsonify
-# Instalar con pip install flask-cors
 from flask_cors import CORS
-# Instalar con pip install mysql-connector-python
 import mysql.connector
-# Si es necesario, pip install Werkzeug
 from werkzeug.utils import secure_filename
-# No es necesario instalar, es parte del sistema standard de Python
 import os
 import time
 # --------------------------------------------------------------------
 app = Flask(__name__)
 CORS(app)  # Esto habilitará CORS para todas las rutas
 
-
 class Catalogo:
-    # Constructor de la clase
     def __init__(self, host, user, password, database):
         self.conn = mysql.connector.connect(
             host=host,
@@ -107,7 +99,7 @@ class Catalogo:
 # ----------------------------------------------------------------
 # Cuerpo del programa
 # ----------------------------------------------------------------
-# Crear una instancia de la clase Catalogo
+
 catalogo = Catalogo(host='localhost', user='root', password='1959marcos',
                     database='juegos_db')
 
@@ -116,14 +108,12 @@ ruta_destino = 'static/img/'
 
 # ----------------------------------------------------------------
 
-
 @app.route("/juegos", methods=["GET"])
 def listar_juegos():
     juegos = catalogo.listar_juegos()
     return jsonify(juegos)
 
 # ----------------------------------------------------------------
-
 
 @app.route("/juegos/<int:codigo>", methods=["GET"])
 def mostrar_juego(codigo):
@@ -135,7 +125,6 @@ def mostrar_juego(codigo):
     else:
         return "Juego no encontrado", 404
 # ----------------------------------------------------------------
-
 
 @app.route("/juegos", methods=["POST"])
 def agregar_juego():
@@ -152,7 +141,6 @@ def agregar_juego():
     else:
         return jsonify({"mensaje": "Juego ya existe"}), 400
 
-
 @app.route("/juegos/<int:codigo>", methods=["DELETE"])
 def eliminar_juego(codigo):
     juego = catalogo.consultar_juego(codigo)
@@ -163,7 +151,6 @@ def eliminar_juego(codigo):
             return jsonify({"mensaje": "Error al eliminar el juego"}), 500
     else:
         return jsonify({"mensaje": "Juego no encontrado"}), 404
-
 
 @app.route("/juegos/<int:codigo>", methods=["PUT"])
 def modificar_juego(codigo):
