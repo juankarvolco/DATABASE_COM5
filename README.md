@@ -1,6 +1,7 @@
 # DATABASE_COM5
+## DB + PYTHON SERVER
 Programas asociados con la creación de una base de datos en MySQL
-Cambié por error el apellido de Miguel Adrián Sosa y le puse Silva-No se como cambiarlo.
+
 
 ### Pasos para la ejecución
 1. Generar entorno virtual Python (Conda o Venv)
