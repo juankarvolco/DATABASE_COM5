@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <title>Acceso - Vamos @ Jugar CRUD</title>
+  </head>
+  <body>
+    <div class="container mt-5 p-5 border-2 border-dark">
+      <h1>CRUD</h1>
+      <h3>Vamos @ Jugar!</h3>
+      <h2>Acceder</h2>
+      <div
+        id="mensajeError"
+        class="alert alert-danger"
+        style="display: none"
+        role="alert"
+      ></div>
+      <form>
+        <div class="form-group">
+          <label for="usuario">Usuario</label>
+          <input type="text" class="form-control" id="usuario" required />
+        </div>
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="contrasena"
+            required
+          />
+        </div>
+        <button type="button" class="btn btn-primary" onclick="iniciarSesion()">
+          Iniciar Sesión
+        </button>
+      </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      async function iniciarSesion() {
+        // Obtener los valores de usuario y contraseña
+        var usuario = document.getElementById("usuario").value;
+        var contrasena = document.getElementById("contrasena").value;
+
+        formData = new FormData();
+
+        formData.append("usuario", usuario);
+        formData.append("contrasena", contrasena);
+
+        const response = await fetch("http://127.0.0.1:5000/login", {
+          method: "POST",
+          body: formData,
+        });
+
+        // Validar las credenciales (puedes cambiar esto según tus necesidades)
+        if (response.ok) {
+          // Autenticación exitosa, redirigir a la página de inicio o a donde desees
+          window.location.href = "/src/crudTemplate/index.html";
+        } else {
+          // Autenticación fallida, mostrar mensaje de error
+          document.getElementById("mensajeError").style.display = "block";
+          document.getElementById("mensajeError").innerText =
+            "Usuario o contraseña incorrectos";
+        }
+      }
+    </script>
+  </body>
+</html>

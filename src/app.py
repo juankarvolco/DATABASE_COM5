@@ -104,8 +104,24 @@ class Catalogo:
 catalogo = Catalogo(host='localhost', user='root', password='1959marcos',
                     database='juegos_db')
 
+usuarios = {
+    'admin': 'admin123',
+    'usuario2': 'password2',
+    'usuario3': 'password3'
+}
+
 # Carpeta para guardar las imagenes
 ruta_destino = 'static/img/'
+
+@app.route('/login', methods=['POST'])
+def login():
+    usuario = request.form['usuario']
+    contrasena = request.form['contrasena']
+
+    if usuario in usuarios and usuarios[usuario] == contrasena:
+        return jsonify({'mensaje': 'Autenticación exitosa'})
+    else:
+        return jsonify({'mensaje': 'Usuario o contraseña incorrectos'}), 401
 
 # ----------------------------------------------------------------
 

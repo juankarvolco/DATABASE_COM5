@@ -68,6 +68,10 @@ function eliminarBtn(event) {
   eliminarJuego(codigoJuego);
 }
 
+function cerrarSesion(){
+  window.location.href = "/src/crudTemplate/login.html";
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   cargarJuegos();
 
