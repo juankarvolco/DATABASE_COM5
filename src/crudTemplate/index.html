@@ -1,33 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vamos @ Jugar CRUD</title>
-    <link rel="stylesheet" href="css/estilos.css">
-</head>
-
-<body>
-    <div>
-        <h1>CRUD</h1>
-        <h3>Vamos @ Jugar!</h3>
-        <table>
-            <tr>
-                <td class="contenedor-centrado"> <a href="altas.html">Alta de juegos</a> </td>
-            </tr>
-            <tr>
-                <td class="contenedor-centrado"> <a href="listado.html">Listado de juegos</a> </td>
-            </tr>
-            <tr>
-                <td class="contenedor-centrado"> <a href="modificaciones.html">Modificar datos de juegos</a> </td>
-            </tr>
-            <tr>
-                <td class="contenedor-centrado"> <a href="listadoEliminar.html">Eliminar juegos</a> </td>
-            </tr>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <h1>CRUD</h1>
+      <h3>Vamos @ Jugar!</h3>
+      <div class="container-fluid mt-5">
+        <h2 class="mb-4">Lista de Juegos</h2>
+        <table class="table table-striped" >
+            <thead class="text-center">
+                <tr>
+                    <th>Código</th>
+                    <th>Título</th>
+                    <th>Descripción</th>
+                    <th>Participantes Mínimos</th>
+                    <th>Participantes Máximos</th>
+                    <th>URL de la Imagen</th>
+                    <th>URL del Video</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaJuegos"></tbody>
         </table>
+        <button id="agregarBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editarModal">Agregar Juego</button>
     </div>
-
-</body>
-
+    <div class="modal" id="editarModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Agregar Juego</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="editCodigo" id="editCodigolbl">Código:</label>
+                        <input type="text" class="form-control" id="editCodigo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="editTitulo">Título:</label>
+                        <input type="text" class="form-control" id="editTitulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescripcion">Descripción:</label>
+                        <input type="text" class="form-control" id="editDescripcion">
+                    </div>
+                    <div class="form-group">
+                        <label for="editParticipantesMin">Participantes Mínimos:</label>
+                        <input type="number" class="form-control" id="editParticipantesMin">
+                    </div>
+                    <div class="form-group">
+                        <label for="editParticipantesMax">Participantes Máximos:</label>
+                        <input type="number" class="form-control" id="editParticipantesMax">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUrlImagen">URL de la Imagen:</label>
+                        <input type="text" class="form-control" id="editUrlImagen">
+                    </div>
+                    <div class="form-group">
+                        <label for="editUrlVideo">URL del Video:</label>
+                        <input type="text" class="form-control" id="editUrlVideo">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="guardarBtn" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="index.js"></script>
+  </body>
 </html>
